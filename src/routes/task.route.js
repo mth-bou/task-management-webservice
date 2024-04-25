@@ -16,7 +16,7 @@ module.exports = router;
  * tags:
  *  name: Tasks
  *  description: Task management and retrieval
- * /v1/tasks/{id}:
+ * /tasks/{id}:
  *  get:
  *   summary: Get a task by id
  *   tags: [Tasks]
@@ -77,7 +77,7 @@ module.exports = router;
  *         $ref: '#/components/schemas/TaskResult'
  *     500:
  *      description: Internal Server Error
- * /v1/tasks:
+ * /tasks:
  *  put:
  *   summary: Create a task
  *   tags: [Tasks]
