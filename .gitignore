@@ -13,3 +13,4 @@ coverage
 
 # Jetbrains IDE
 .idea
+logs
