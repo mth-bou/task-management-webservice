@@ -24,4 +24,9 @@ const taskSchema = mongoose.Schema(
   { optimisticConcurrency: true }
   );
 
-module.exports = mongoose.model('task', taskSchema);
+/**
+ * @typedef Task
+ */
+const Task = mongoose.model('Task', taskSchema);
+
+module.exports = Task;
