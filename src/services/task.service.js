@@ -1,17 +1,26 @@
 const { Task } = require('../models');
+const logger = require('../config/logger');
 
-const AT_LEAST_ONE_UPDATE_REQUIRED_CODE = 400;
-const INVALID_STATUS_CODE = 400;
-const INVALID_STATUS_TRANSITION_CODE = 400;
-const TASK_NOT_FOUND_CODE = 404;
-const CONCURRENCY_ERROR_CODE = 500;
+const AT_LEAST_ONE_UPDATE_REQUIRED_CODE = 0;
+const INVALID_STATUS_CODE = 1;
+const INVALID_STATUS_TRANSITION_CODE = 2;
+const TASK_NOT_FOUND_CODE = 3;
+const CONCURRENCY_ERROR_CODE = 4;
 
-const errorCodes = {
-    AT_LEAST_ONE_UPDATE_REQUIRED_CODE,
-    INVALID_STATUS_CODE,
-    INVALID_STATUS_TRANSITION_CODE,
-    TASK_NOT_FOUND_CODE,
-    CONCURRENCY_ERROR_CODE
+const getTaskById = (id) => {
+    return Task.findById(id);
+}
+
+const createTask = (name, description) => {
+    return Task.create({ name, description });
+}
+
+const availableUpdates = {
+    new: ['active', 'cancelled'],
+    active: ['done', 'cancelled'],
+    done: ['completed'],
+    completed: [],
+    cancelled: []
 };
 
 const updateTaskById = async (id, { name, description, status }) => {
@@ -67,6 +76,15 @@ const updateTaskById = async (id, { name, description, status }) => {
 }
 
 module.exports = {
+    getTaskById,
+    createTask,
     updateTaskById,
-    errorCodes
-}
+
+    errorCodes: {
+        AT_LEAST_ONE_UPDATE_REQUIRED_CODE,
+        INVALID_STATUS_CODE,
+        INVALID_STATUS_TRANSITION_CODE,
+        TASK_NOT_FOUND_CODE,
+        CONCURRENCY_ERROR_CODE
+    }
+};
