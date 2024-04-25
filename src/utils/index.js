@@ -1,1 +1,1 @@
-module.exports.pick = require('pick');
+module.exports.pick = require('./pick');
