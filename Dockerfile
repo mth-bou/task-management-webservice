@@ -1,15 +1,17 @@
 FROM node:alpine
 
-RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
+#RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
 
-WORKDIR /usr/src/node-app
+#WORKDIR /usr/src/node-app
 
-COPY package.json package-lock.json ./
+WORKDIR /node-app
 
-USER node
+COPY package*.json ./
+
+#USER node
 
 RUN npm install
 
-COPY --chown=node:node . .
+COPY src /node-app/src
 
-EXPOSE 3000
+CMD ["node", "./src/index.js"]
