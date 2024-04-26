@@ -14,6 +14,15 @@ const toDto = (task) => {
     };
 }
 
+const getAllTasks = catchAsync(async (req,res) => {
+    const result = await taskService.getAllTasks();
+
+    res.status(200).json({
+        success: true,
+        tasks: result.map(toDto)
+    });
+});
+
 const getTaskById = catchAsync(async (req, res) => {
     const result = await taskService.getTaskById(req.params.id);
 
@@ -25,7 +34,7 @@ const getTaskById = catchAsync(async (req, res) => {
 });
 
 const createTask = catchAsync(async (req, res) => {
-    const result = await taskService.createTask(req.body);
+    const result = await taskService.createTask(req.body.name, req.body.description);
 
     res.status(201).json({
         success: true,
@@ -67,6 +76,7 @@ const updateTaskById = catchAsync(async (req, res) => {
 });
 
 module.exports = {
+    getAllTasks,
     getTaskById,
     createTask,
     updateTaskById

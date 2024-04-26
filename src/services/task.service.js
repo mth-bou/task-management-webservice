@@ -7,6 +7,10 @@ const INVALID_STATUS_TRANSITION_CODE = 2;
 const TASK_NOT_FOUND_CODE = 3;
 const CONCURRENCY_ERROR_CODE = 4;
 
+const getAllTasks = () => {
+    return Task.find({});
+}
+
 const getTaskById = (id) => {
     return Task.findById(id);
 }
@@ -76,6 +80,7 @@ const updateTaskById = async (id, { name, description, status }) => {
 }
 
 module.exports = {
+    getAllTasks,
     getTaskById,
     createTask,
     updateTaskById,
