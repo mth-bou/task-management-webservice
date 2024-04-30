@@ -8,8 +8,6 @@ WORKDIR /node-app
 
 COPY package*.json ./
 
-#USER node
-
 RUN npm install
 
 COPY src /node-app/src

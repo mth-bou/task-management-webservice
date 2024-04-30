@@ -7,8 +7,8 @@ const router = Router();
 
 router.get('/', taskController.getAllTasks);
 router.get('/:id', validate(taskValidation.getTaskById), taskController.getTaskById);
-router.post('/', validate(taskValidation.createTask), taskController.createTask);
-router.put('/:id', validate(taskValidation.updateTaskById), taskController.updateTaskById);
+router.put('/', validate(taskValidation.createTask), taskController.createTask);
+router.post('/:id', validate(taskValidation.updateTaskById), taskController.updateTaskById);
 
 module.exports = router;
 

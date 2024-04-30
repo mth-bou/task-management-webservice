@@ -55,10 +55,10 @@ const updateTaskById = catchAsync(async (req, res) => {
                 res.status(400).json({ success: false, message: 'Invalid status' });
                 return;
             case taskService.errorCodes.INVALID_STATUS_TRANSITION_CODE:
-                res.status(400).json({ success: false, message: result.error });
+                res.status(404).json({ success: false, message: 'Task not found' });
                 return;
             case taskService.errorCodes.TASK_NOT_FOUND_CODE:
-                res.status(404).json({ success: false, message: 'Task not found' });
+                res.status(400).json({ success: false, message: result.error });
                 return;
             case taskService.errorCodes.CONCURRENCY_ERROR_CODE:
                 res.status(500).json({ success: false, message: 'Concurrency error' });

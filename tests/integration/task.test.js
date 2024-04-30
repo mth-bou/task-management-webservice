@@ -85,7 +85,8 @@ describe('Task', () => {
 
                     expect(response.status).toEqual(201);
 
-                    const result = response.json();
+                    const result = await response.json();
+
                     expect(result).toEqual({
                         success: true,
                         task: {
@@ -170,7 +171,7 @@ describe('Task', () => {
 
                     expect(result2).toEqual({
                         success: false,
-                        message: 'at least one update required',
+                        message: 'At least one update required',
                     });
                 });
 

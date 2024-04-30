@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   node-app:
     build: .
@@ -12,11 +10,13 @@ services:
       - mongodb
     volumes:
       - .:/node-app
+      - logs:/node-app/logs:rw
     networks:
       - node-network
 
   mongodb:
     image: mongo
+    restart: always
     ports:
       - '27017:27017'
     volumes:
@@ -26,6 +26,7 @@ services:
 
 volumes:
   dbdata:
+  logs:
 
 networks:
   node-network:

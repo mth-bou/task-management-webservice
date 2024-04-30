@@ -43,7 +43,7 @@ const updateTaskById = async (id, { name, description, status }) => {
         if (!task) {
             return {
                 error: 'Task not found',
-                code: TASK_NOT_FOUND_CODE
+                code: INVALID_STATUS_TRANSITION_CODE
             };
         }
 
@@ -52,7 +52,7 @@ const updateTaskById = async (id, { name, description, status }) => {
             if (!allowedStatuses.includes(status)) {
                 return {
                     error: `Cannot update '${task.status}' task to '${status}' status`,
-                    code: INVALID_STATUS_TRANSITION_CODE
+                    code: TASK_NOT_FOUND_CODE
                 }
             }
         }
